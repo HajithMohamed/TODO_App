@@ -11,6 +11,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { buildSiteUrl } from "@/lib/env";
 import { createClient } from "@/lib/supabase/client";
 import { loginSchema } from "@/lib/validations/auth";
 
@@ -56,7 +57,7 @@ export function LoginForm() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=/dashboard`,
+        redirectTo: buildSiteUrl("/auth/callback?next=/dashboard"),
       },
     });
 

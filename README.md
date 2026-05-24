@@ -56,7 +56,7 @@ Use `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` for newer Supabase projects. `NEXT_PU
 1. Create a Supabase project.
 2. Add the app URL in Supabase Auth:
    - Site URL: `http://localhost:3000` for local development.
-   - Production URL after Netlify deploy.
+  - Production URL after Netlify deploy.
    - Redirect URLs: `http://localhost:3000/auth/callback`, `http://localhost:3000/reset-password`, and production equivalents.
 3. Run `supabase/migrations/0001_taskflow_schema.sql` in the Supabase SQL Editor.
 4. Enable email confirmation if desired.
