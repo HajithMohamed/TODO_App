@@ -7,7 +7,7 @@ export const supabaseAnonKey =
 export const siteUrl =
   typeof window !== "undefined"
     ? window.location.origin
-    : process.env.NEXT_PUBLIC_SITE_URL || process.env.URL || defaultSiteUrl;
+    : process.env.NEXT_PUBLIC_SITE_URL || (process.env.URL ? `https://${process.env.URL}` : defaultSiteUrl);
 
 export function buildSiteUrl(path: string) {
   return new URL(path, siteUrl).toString();
