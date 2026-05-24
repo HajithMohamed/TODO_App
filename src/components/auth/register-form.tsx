@@ -11,6 +11,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { buildSiteUrl } from "@/lib/env";
 import { createClient } from "@/lib/supabase/client";
 import { registerSchema } from "@/lib/validations/auth";
 
@@ -38,7 +39,7 @@ export function RegisterForm() {
       password: values.password,
       options: {
         data: { full_name: values.name },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/dashboard`,
+        emailRedirectTo: buildSiteUrl("/auth/callback?next=/dashboard"),
       },
     });
     setIsLoading(false);

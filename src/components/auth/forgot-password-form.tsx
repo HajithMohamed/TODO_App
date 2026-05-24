@@ -9,6 +9,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { buildSiteUrl } from "@/lib/env";
 import { createClient } from "@/lib/supabase/client";
 import { forgotPasswordSchema } from "@/lib/validations/auth";
 
@@ -31,7 +32,7 @@ export function ForgotPasswordForm() {
 
     setIsLoading(true);
     const { error } = await supabase.auth.resetPasswordForEmail(values.email, {
-      redirectTo: `${window.location.origin}/reset-password`,
+      redirectTo: buildSiteUrl("/reset-password"),
     });
     setIsLoading(false);
 

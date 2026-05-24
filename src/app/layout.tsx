@@ -3,8 +3,10 @@ import type { Metadata, Viewport } from "next";
 import "@/app/globals.css";
 import { AppProviders } from "@/components/providers/app-providers";
 import { appName } from "@/lib/constants";
+import { siteUrl } from "@/lib/env";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${appName} - Modern task management`,
     template: `%s - ${appName}`,
