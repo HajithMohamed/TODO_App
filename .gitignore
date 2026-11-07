@@ -32,3 +32,8 @@ Thumbs.db
 # local caches
 .npm-cache/
 .netlify/
+
+# build and tool caches
+*.tsbuildinfo
+.netlify-appdata/
+.netlify-xdg/
