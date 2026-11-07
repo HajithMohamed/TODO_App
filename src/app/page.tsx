@@ -35,8 +35,14 @@ export default function LandingPage() {
       </nav>
 
       <section className="soft-grid relative mx-auto flex min-h-[86svh] w-full max-w-7xl flex-col justify-center px-4 pb-16 pt-12 sm:px-6 lg:px-8">
-        <div className="absolute inset-x-4 bottom-0 top-28 -z-10 overflow-hidden rounded-[2rem] border border-border bg-card/55 shadow-2xl sm:inset-x-6 lg:inset-x-8">
-          <div className="grid h-full grid-cols-1 gap-4 p-5 opacity-90 md:grid-cols-[240px_1fr]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-4 bottom-0 top-28 -z-10 overflow-hidden rounded-[2rem] border border-border bg-card/55 shadow-2xl sm:inset-x-6 lg:inset-x-8"
+        >
+          {/* Fades the decorative preview behind the hero text so the heading stays readable.
+              On small screens the preview is hidden, because the text covers the full width. */}
+          <div className="absolute inset-0 z-10 hidden bg-linear-to-r from-background via-background/90 to-background/20 md:block" />
+          <div className="hidden h-full gap-4 p-5 opacity-90 md:grid md:grid-cols-[240px_1fr]">
             <aside className="hidden rounded-3xl border border-border bg-background/80 p-4 md:block">
               <div className="mb-8 h-10 rounded-2xl bg-primary/15" />
               {["Dashboard", "My Tasks", "Completed", "Categories"].map((item, index) => (
