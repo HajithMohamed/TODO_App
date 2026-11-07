@@ -1,6 +1,30 @@
 # TaskFlow
 
-A modern production-ready task management web app built with Next.js App Router, React, TypeScript, Supabase, Tailwind CSS, and Netlify deployment settings.
+[![CI](https://github.com/HajithMohamed/TODO_App/actions/workflows/ci.yml/badge.svg)](https://github.com/HajithMohamed/TODO_App/actions/workflows/ci.yml)
+![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Auth%20%7C%20Postgres%20%7C%20Realtime-3ECF8E?logo=supabase&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+A personal task manager built with Next.js 16 and Supabase. You sign in with email, Google or GitHub, organise tasks with subtasks, tags, categories and due dates, and see changes appear live in every open tab. PostgreSQL row-level security keeps each user's data private.
+
+<!-- Add the live Netlify link here once the deploy is fixed: **Live demo:** https://... -->
+
+![TaskFlow landing page](docs/screenshots/landing.png)
+
+## At a glance
+
+| | |
+| --- | --- |
+| **What it is** | A task workspace with subtasks, tags, categories, due dates, archive, duplicate, a dashboard and a Pomodoro timer |
+| **Data privacy** | No custom backend. All 7 tables use PostgreSQL row-level security (10 policies) that compare each row's owner with `auth.uid()`, and grants give signed-in users only the privileges they need ([migration](supabase/migrations/0001_taskflow_schema.sql)) |
+| **Realtime** | Supabase Realtime subscriptions on tasks, subtasks, tags, categories and the activity log, filtered to the signed-in user ([`use-tasks.ts`](src/hooks/use-tasks.ts)) |
+| **Stack** | Next.js 16 (App Router), React 19, TypeScript, Supabase (Auth, Postgres, Realtime), Tailwind CSS 4, React Hook Form + Zod, Recharts, Zustand |
+| **Tests and CI** | Vitest unit tests for the validation schemas and the task statistics. GitHub Actions runs lint, type check, tests and a production build on every push and pull request |
+
+| Sign in (dark theme) |
+| --- |
+| ![TaskFlow sign-in page in dark theme with email, Google and GitHub sign-in](docs/screenshots/login-dark.png) |
 
 ## Features
 
@@ -24,7 +48,7 @@ A modern production-ready task management web app built with Next.js App Router,
 - Supabase Auth, Postgres, Realtime
 - React Hook Form and Zod
 - Recharts
-- Framer Motion-ready dependency set
+- Framer Motion
 - Sonner toasts
 - Zustand UI filter store
 
@@ -56,7 +80,7 @@ Use `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` for newer Supabase projects. `NEXT_PU
 1. Create a Supabase project.
 2. Add the app URL in Supabase Auth:
    - Site URL: `http://localhost:3000` for local development.
-  - Production URL after Netlify deploy.
+   - Production URL after Netlify deploy.
    - Redirect URLs: `http://localhost:3000/auth/callback`, `http://localhost:3000/reset-password`, and production equivalents.
 3. Run `supabase/migrations/0001_taskflow_schema.sql` in the Supabase SQL Editor.
 4. Enable email confirmation if desired.
@@ -76,7 +100,7 @@ src/
   store/               # Small Zustand UI store
   types/               # Database and task domain types
 supabase/migrations/   # Production database schema and RLS
-docs/                  # Deployment guide
+docs/                  # Deployment guide and screenshots
 ```
 
 ## Scripts
@@ -87,6 +111,7 @@ npm run build      # Production build
 npm run start      # Start built app
 npm run lint       # ESLint
 npm run typecheck  # TypeScript check
+npm test           # Vitest unit tests
 ```
 
 ## Netlify Deployment
@@ -117,3 +142,7 @@ Push the repo to GitHub, import it in Netlify, add the environment variables, an
 - Shared workspaces and assigned team tasks.
 - Profile image upload through Supabase Storage.
 - Server Actions for selected mutations when the product needs server-side audit or rate limiting.
+
+## License
+
+[MIT](LICENSE)
